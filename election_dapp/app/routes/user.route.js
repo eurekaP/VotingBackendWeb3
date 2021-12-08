@@ -76,11 +76,15 @@ router.post("/user-add", (req,res)=>{
     if(!isValid){
         return res.status(400).send(errors);
     }
+
+    console.log()
+    console.log("Register body:", req.body);
+    
     const {base64Image}=req.body;
+    console.log("base64Image", base64Image);
 
     User.findOne({username:req.body.username})
         .then(user=>{
-            console.log(user);
             if(user)
             {
                console.log("exist");
@@ -95,7 +99,8 @@ router.post("/user-add", (req,res)=>{
                     phone:req.body.phone,
                     address:req.body.address,
                     password:req.body.password,
-                    verified:req.body.verified
+                    verified:req.body.verified,
+                    walletaccount:req.body.walletaccount
                 });
                
                 createPerson({name: newUser.username, base64data:  base64Image})
@@ -130,9 +135,9 @@ router.post("/user-add", (req,res)=>{
 //getting all user data 
 router.post("/user-data",(req, res)=>{
     User.find({}).select(['-password'])
-        .then(user=>{
-            if(user){
-                return res.status(200).send(user);
+        .then(users=>{
+            if(users){
+                return res.status(200).send(users);
             }
         });
 });

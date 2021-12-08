@@ -30,11 +30,15 @@ const UserSchema = new Schema({
         default:0,
         required:true
     },
+    walletaccount:{
+        type: String,
+        required: true
+    },
     verified:{
         type:Boolean,
         default:false,
         required:true
-    }
+    },
 });
 
 UserSchema.virtual('id').get(function(){

@@ -12,6 +12,12 @@ module.exports.createPerson = (params) => new Promise((resolve, reject) => {
   saveImage(base64data, fileName)
   .then(res => {
     console.log(res, 'this is the res of save image ............')
+    
+
+
+    // resolve (214);
+    // ============== Temporary Comment this for signup test ========= (2021/12/7) //// 
+    
     const photo = fs.createReadStream(`${tempFilePath}/${fileName}.png`);
     const options = {
       method: 'POST',
